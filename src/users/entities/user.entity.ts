@@ -33,12 +33,20 @@ export class User extends CoreEntity {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'p@ssw0rd', description: 'User Password' })
+  @ApiProperty({
+    example: 'p@ssw0rd',
+    description: 'User Password',
+    required: false,
+  })
   @Column({ select: false })
   @IsString()
   password: string;
 
-  @ApiProperty({ example: 'Client', description: 'User Role' })
+  @ApiProperty({
+    example: 'Client',
+    description: 'User Role',
+    enum: Object.values(UserRole),
+  })
   @Column({ type: 'enum', enum: UserRole, default: UserRole.Client })
   @IsEnum(UserRole)
   role: UserRole;
