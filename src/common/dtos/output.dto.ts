@@ -2,10 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean } from 'class-validator';
 
 export class CoreOutput {
-  @ApiProperty({ description: '요청 성공 여부' })
-  @IsBoolean()
-  ok: boolean;
+  @ApiProperty({
+    description: 'Status Code',
+    example: 409,
+  })
+  statusCode?: number;
 
-  @ApiProperty({ description: '에러 메시지', required: false })
+  @ApiProperty({
+    description: 'Error Message',
+    example: 'Already Exists',
+    required: false,
+  })
+  message?: string;
+
+  @ApiProperty({ description: 'Meaning of http status code', required: false })
   error?: string;
 }
